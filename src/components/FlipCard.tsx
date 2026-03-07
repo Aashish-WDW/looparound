@@ -20,8 +20,8 @@ function useGyroTilt(enabled: boolean, containerRef: React.RefObject<HTMLDivElem
       hasGyro.current = true;
       const { beta, gamma } = globalOrientation;
 
-      const tiltX = Math.max(-30, Math.min(30, (beta - 0.7) * 25));
-      const tiltY = Math.max(-35, Math.min(35, gamma * 30));
+      const tiltX = Math.max(-20, Math.min(20, (beta - 0.7) * 12));
+      const tiltY = Math.max(-20, Math.min(20, gamma * 15));
 
       setTilt({ x: tiltX, y: tiltY });
     } else {
@@ -110,7 +110,7 @@ const FlipCard = ({ small = false, onAnimationComplete, autoFlip = false }: Flip
           height: 280 * scale,
           transformStyle: "preserve-3d",
           transform: introComplete ? `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` : undefined,
-          transition: introComplete ? "transform 0.15s ease-out" : undefined,
+          transition: introComplete ? "transform 0.3s ease-out" : undefined,
         }}
         onClick={handleClick}
       >

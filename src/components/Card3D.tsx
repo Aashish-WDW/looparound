@@ -284,8 +284,8 @@ const NeonCard = ({ onAnimationComplete, autoRotate = false, hasPermission = fal
       targetTilt.current.x = gyroState.x + driftX;
       targetTilt.current.y = gyroState.y + driftY;
 
-      groupRef.current.rotation.x += (targetTilt.current.x - groupRef.current.rotation.x) * 0.08;
-      groupRef.current.rotation.y += (targetTilt.current.y - groupRef.current.rotation.y) * 0.08;
+      groupRef.current.rotation.x += (targetTilt.current.x - groupRef.current.rotation.x) * 0.04;
+      groupRef.current.rotation.y += (targetTilt.current.y - groupRef.current.rotation.y) * 0.04;
     }
   });
 
@@ -323,9 +323,9 @@ const Card3D = ({ onAnimationComplete, autoRotate = true, small = false }: LoopC
   // Update shared gyro state
   useEffect(() => {
     if (hasPermission) {
-      // Clamp gyro tilt to even broader range for extreme sensitivity
-      gyroState.x = Math.max(-1.0, Math.min(1.0, (orientation.beta - Math.PI / 4) * 1.0));
-      gyroState.y = Math.max(-1.2, Math.min(1.2, orientation.gamma * 1.2));
+      // Reduced sensitivity and broader smoothing
+      gyroState.x = Math.max(-0.6, Math.min(0.6, (orientation.beta - Math.PI / 4) * 0.5));
+      gyroState.y = Math.max(-0.8, Math.min(0.8, orientation.gamma * 0.6));
     } else {
       gyroState.x = mouseTilt.x;
       gyroState.y = mouseTilt.y;
